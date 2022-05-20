@@ -14,6 +14,7 @@ package com.amaris.driveracademy.services.impl;
 
 import com.amaris.driveracademy.dao.DaoStudent;
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
+import com.amaris.driveracademy.dtos.response.StudentDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
 import com.amaris.driveracademy.entities.Students;
 import com.amaris.driveracademy.enums.DriverAcademyError;
@@ -51,7 +52,12 @@ public class StudentServiceImpl implements StudentService {
         this.daoStudent.insertStudent(student);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    @Override public List<StudentsResponseDTO> getAllStudents() {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<StudentsResponseDTO> getAllStudents() {
         final var students = this.daoStudent.getAllStudents();
         final var studentsMapper = new ArrayList<StudentsResponseDTO>();
         if(students.isEmpty()) {
@@ -59,6 +65,16 @@ public class StudentServiceImpl implements StudentService {
         }
         students.forEach(student -> studentsMapper.add(this.modelMapper.map(student, StudentsResponseDTO.class)));
         return studentsMapper;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StudentDetailResponseDTO getDetailStudent(long id) {
+        final var studentDetail = this.daoStudent.getDetailStudent(id);
+        return this.modelMapper.map(studentDetail,
+            StudentDetailResponseDTO.class);
     }
 
 }

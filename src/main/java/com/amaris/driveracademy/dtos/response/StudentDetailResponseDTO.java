@@ -1,5 +1,5 @@
 /*
- * @(#)StudentRequestDTO.java
+ * @(#)StudentDetailResponseDTO.java
  *
  * Copyright (c) BANCO DE CHILE (Chile). All rights reserved.
  *
@@ -10,17 +10,19 @@
  * In any event, this notice and the above copyright must always be included
  * verbatim with this file.
  */
-package com.amaris.driveracademy.dtos.request;
+package com.amaris.driveracademy.dtos.response;
 
 import com.amaris.driveracademy.entities.Licenses;
 import com.amaris.driveracademy.entities.Modules;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * StudentRequestDTO.
+ * StudentDetailResponseDTO.
  *
  * @author Camilo Valderrama.
  * @version 1.0.0, 19-05-2022
@@ -28,15 +30,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudentRequestDTO {
-    /** name. */
-    private String studentName;
-    /** age. */
-    private String studentAge;
-    /** identification. */
-    private String studentIdentification;
+@AllArgsConstructor
+public class StudentDetailResponseDTO extends StudentsResponseDTO {
     /** license. */
     private List<Licenses> licenses;
-    /** modules. */
+    /** module. */
     private Modules module;
 }

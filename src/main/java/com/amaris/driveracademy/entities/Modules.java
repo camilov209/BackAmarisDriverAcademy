@@ -12,11 +12,13 @@
  */
 package com.amaris.driveracademy.entities;
 
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -40,8 +42,10 @@ public class Modules {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long moduleId;
-
     /** Module Name. */
     @Column(name = "NAME")
     private String moduleName;
+    /** courses. */
+    @OneToMany(mappedBy = "modules")
+    private List<Courses> courses;
 }

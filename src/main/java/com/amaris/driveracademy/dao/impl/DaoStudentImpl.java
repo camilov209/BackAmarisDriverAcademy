@@ -42,14 +42,32 @@ public class DaoStudentImpl implements DaoStudent {
     @Override
     public Students insertStudent(final Students students) {
         try {
-            return studentRepository.save(students);
+            return this.studentRepository.save(students);
         }catch (final Exception ex) {
             throw new SimpleException(DriverAcademyError.ERROR_STUDENT_EXIST, HttpStatus.BAD_REQUEST.value(), ex);
         }
     }
-    @Override public List<Students> getAllStudents() {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Students> getAllStudents() {
         try {
-            return studentRepository.findAll();
+            return this.studentRepository.findAll();
+        }catch (final Exception ex) {
+            throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Students getDetailStudent(long id) {
+        try {
+            return this.studentRepository.findById(id).orElseThrow(() ->
+                new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value()));
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }

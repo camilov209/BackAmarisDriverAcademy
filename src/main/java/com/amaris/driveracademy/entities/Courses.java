@@ -12,6 +12,7 @@
  */
 package com.amaris.driveracademy.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -42,12 +43,11 @@ public class Courses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long courseId;
-
     /** Course Name. */
     @Column(name = "NAME")
     private String courseName;
-
     /** Modules. */
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "ID_MODULE")
     private Modules modules;

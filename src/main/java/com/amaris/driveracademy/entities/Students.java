@@ -12,14 +12,19 @@
  */
 package com.amaris.driveracademy.entities;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,25 +47,22 @@ public class Students {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long studentId;
-
     /** Student Name. */
     @Column(name = "NAME")
     private String studentName;
-
     /** Student Age. */
     @Column(name = "AGE")
     private String studentAge;
-
     /** Student Identification. */
     @Column(name = "IDENTIFICATION")
     private String studentIdentification;
-
-    /** Student license. */
-    @ManyToOne
-    @JoinColumn(name = "ID_LICENSE")
-    private Licenses license;
-
-    /** Student module. */
+    /** licenses. */
+    @ManyToMany(cascade = { CascadeType.MERGE})
+    @JoinTable(name = "LICENSES_REGISTRATION", joinColumns = @JoinColumn(name = "ID_STUDENT", referencedColumnName =
+        "id"),
+        inverseJoinColumns = @JoinColumn(name = "ID_LICENSE", referencedColumnName = "id"))
+    private List<Licenses> licenses;
+    /** module. */
     @ManyToOne
     @JoinColumn(name = "ID_MODULE")
     private Modules module;

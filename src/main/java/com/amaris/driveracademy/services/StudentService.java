@@ -13,6 +13,7 @@
 package com.amaris.driveracademy.services;
 
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
+import com.amaris.driveracademy.dtos.response.StudentDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -39,4 +40,11 @@ public interface StudentService {
      * @return {@link StudentsResponseDTO}
      */
     List<StudentsResponseDTO> getAllStudents();
+
+    /**
+     * Obtiene el detalle del estudiante.
+     *
+     * @return {@link StudentsResponseDTO}
+     */
+    StudentDetailResponseDTO getDetailStudent(long id);
 }

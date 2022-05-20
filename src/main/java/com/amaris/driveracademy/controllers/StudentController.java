@@ -14,14 +14,13 @@ package com.amaris.driveracademy.controllers;
 
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
-import com.amaris.driveracademy.enums.DriverAcademyError;
-import com.amaris.driveracademy.exceptions.SimpleException;
 import com.amaris.driveracademy.services.StudentService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +41,7 @@ public class StudentController {
     private final StudentService studentService;
 
     /**
-     * Insert student.
+     * Servicio para insertar estudiante.
      *
      * @param studentRequest {@link StudentRequestDTO}
      * @return {@link Void}
@@ -52,8 +51,24 @@ public class StudentController {
         return this.studentService.insertStudent(studentRequest);
     }
 
+    /**
+     * Servicio para obtener todos los estudiantes.
+     *
+     * @return {@link StudentsResponseDTO}
+     */
     @GetMapping
     public List<StudentsResponseDTO> getAllStudents() {
         return this.studentService.getAllStudents();
+    }
+
+    /**
+     * Servicio el detalle del estudiante.
+     *
+     * @param id {@link Long}
+     * @return {@link StudentsResponseDTO}
+     */
+    @GetMapping("/{id}")
+    public StudentsResponseDTO getAllStudents(@PathVariable final long id) {
+        return this.studentService.getDetailStudent(id);
     }
 }

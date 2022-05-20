@@ -37,4 +37,11 @@ public interface DaoStudent {
      * @return {@link Students}
      */
     List<Students> getAllStudents();
+
+    /**
+     * Obtiene el detalle del estudiante.
+     *
+     * @return {@link Students}
+     */
+    Students getDetailStudent(long id);
 }
