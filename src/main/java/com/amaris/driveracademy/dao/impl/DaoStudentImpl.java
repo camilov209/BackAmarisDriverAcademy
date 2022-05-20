@@ -67,7 +67,7 @@ public class DaoStudentImpl implements DaoStudent {
     public Students getDetailStudent(long id) {
         try {
             return this.studentRepository.findById(id).orElseThrow(() ->
-                new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value()));
+                new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.NO_CONTENT.value()));
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }

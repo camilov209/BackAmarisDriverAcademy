@@ -27,7 +27,9 @@ public enum DriverAcademyError implements EnumError {
     /** ERROR_STUDENT_EXIST. */
     ERROR_STUDENT_EXIST("01", "El estudiante ya se encuentra registrado"),
     /** ERROR_EMPTY_STUDENTS. */
-    ERROR_EMPTY_STUDENTS("02", "No se encontraron estudiantes registrados.");
+    ERROR_EMPTY_STUDENTS("02", "No se encontraron estudiantes registrados."),
+    /** ERROR_EMPTY_MODULE. */
+    ERROR_EMPTY_MODULE("03", "No se encontraron modulos registrados");
 
 
     /** code. */

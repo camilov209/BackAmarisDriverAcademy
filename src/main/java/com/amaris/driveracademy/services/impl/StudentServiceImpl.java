@@ -61,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
         final var students = this.daoStudent.getAllStudents();
         final var studentsMapper = new ArrayList<StudentsResponseDTO>();
         if(students.isEmpty()) {
-            throw new SimpleException(DriverAcademyError.ERROR_STUDENT_EXIST, HttpStatus.BAD_REQUEST.value());
+            throw new SimpleException(DriverAcademyError.ERROR_STUDENT_EXIST, HttpStatus.NO_CONTENT.value());
         }
         students.forEach(student -> studentsMapper.add(this.modelMapper.map(student, StudentsResponseDTO.class)));
         return studentsMapper;
