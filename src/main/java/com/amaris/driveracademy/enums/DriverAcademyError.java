@@ -1,0 +1,75 @@
+/*
+ * @(#)DriverAcademyError.java
+ *
+ * Copyright (c) BANCO DE CHILE (Chile). All rights reserved.
+ *
+ * All rights to this product are owned by BANCO DE CHILE and may only
+ * be used under the terms of its associated license document. You may NOT
+ * copy, modify, sublicense, or distribute this source file or portions of
+ * it unless previously authorized in writing by BANCO DE CHILE.
+ * In any event, this notice and the above copyright must always be included
+ * verbatim with this file.
+ */
+package com.amaris.driveracademy.enums;
+
+import lombok.RequiredArgsConstructor;
+
+/**
+ * DriverAcademyError.
+ *
+ * @author Camilo Valderrama.
+ * @version 1.0.0, 19-05-2022
+ */
+@RequiredArgsConstructor
+public enum DriverAcademyError implements EnumError {
+    /** DEFAULT. */
+    DEFAULT("99", "Error Generico"),
+    /** ERROR_STUDENT_EXIST. */
+    ERROR_STUDENT_EXIST("01", "El estudiante ya se encuentra registrado"),
+    /** ERROR_EMPTY_STUDENTS. */
+    ERROR_EMPTY_STUDENTS("02", "No se encontraron estudiantes registrados.");
+
+
+    /** code. */
+    private final String code;
+    /** message. */
+    private final String message;
+
+    // -------------------------------------------------------------------
+    // -- Métodos Sobrescritos -------------------------------------------
+    // -------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getCode() {
+        return "DA" + this.code;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getMessage() {
+        return this.message;
+    }
+
+    // -------------------------------------------------------------------
+    // -- Métodos Públicos -----------------------------------------------
+    // -------------------------------------------------------------------
+    /**
+     * Obtiene errores por código.
+     *
+     * @param code {@link String}
+     * @return {@link DriverAcademyError}
+     */
+    public static DriverAcademyError getErrorByCode(final String code) {
+        for (final DriverAcademyError error : DriverAcademyError.values()) {
+            if (error.getCode().equalsIgnoreCase(code)) {
+                return error;
+            }
+        }
+        return DEFAULT;
+    }
+
+}
