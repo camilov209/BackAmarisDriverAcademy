@@ -44,7 +44,7 @@ public class InscriptionCourses {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "INSCRIPTION_ID")
     private long inscriptionId;
     /** students. */
     @ManyToOne

@@ -45,10 +45,10 @@ public class Courses {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "COURSE_ID")
     private long courseId;
     /** Course Name. */
-    @Column(name = "NAME")
+    @Column(name = "COURSE_NAME")
     private String courseName;
     /** Modules. */
     @JsonBackReference

@@ -45,10 +45,10 @@ public class Modules {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "MODULE_ID")
     private long moduleId;
     /** Module Name. */
-    @Column(name = "NAME")
+    @Column(name = "MODULE_NAME")
     private String moduleName;
     /** Courses. */
     @OneToMany(mappedBy = "modules")

@@ -43,10 +43,10 @@ public class Licenses {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "LICENSE_ID")
     private long licenseId;
     /** License Name. */
-    @Column(name = "NAME")
+    @Column(name = "LICENSES_NAME")
     private String licenseName;
     /** students. */
     @JsonBackReference

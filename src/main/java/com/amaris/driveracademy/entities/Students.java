@@ -45,22 +45,22 @@ public class Students {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "STUDENT_ID")
     private long studentId;
     /** Student Name. */
-    @Column(name = "NAME")
+    @Column(name = "STUDENT_NAME")
     private String studentName;
     /** Student Age. */
-    @Column(name = "AGE")
+    @Column(name = "STUDENT_AGE")
     private String studentAge;
     /** Student Identification. */
-    @Column(name = "IDENTIFICATION")
+    @Column(name = "STUDENT_IDENTIFICATION")
     private String studentIdentification;
     /** licenses. */
     @ManyToMany(cascade = { CascadeType.MERGE})
     @JoinTable(name = "LICENSES_REGISTRATION",
-        joinColumns = @JoinColumn(name = "ID_STUDENT", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "ID_LICENSE", referencedColumnName = "id"))
+        joinColumns = @JoinColumn(name = "ID_STUDENT", referencedColumnName = "STUDENT_ID"),
+        inverseJoinColumns = @JoinColumn(name = "ID_LICENSE", referencedColumnName = "LICENSE_ID"))
     private List<Licenses> licenses;
 
 }
