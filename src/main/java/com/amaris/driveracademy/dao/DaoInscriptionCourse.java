@@ -24,5 +24,11 @@ import org.springframework.http.ResponseEntity;
  */
 public interface DaoInscriptionCourse {
 
+    /**
+     * Inserta modulos y cursos en bd.
+     *
+     * @param inscriptionCourses {@link InscriptionCourses}
+     * @return {@link InscriptionCourses}
+     */
     List<InscriptionCourses> insertInscriptionCourse(List<InscriptionCourses> inscriptionCourses);
 }

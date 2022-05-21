@@ -12,11 +12,12 @@
  */
 package com.amaris.driveracademy.exceptions;
 
-import com.amaris.driveracademy.enums.CommonError;
 import com.amaris.driveracademy.enums.DriverAcademyError;
 import com.amaris.driveracademy.enums.EnumError;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * SimpleException.
@@ -24,27 +25,57 @@ import java.util.Map;
  * @author Camilo Valderrama.
  * @version 1.0.0, 19-05-2022
  */
+@Getter
+@Setter
 @JsonIgnoreProperties({"cause", "stackTrace", "localizedMessage", "suppressed", "status", "errorEnum"})
 public class SimpleException extends RuntimeException {
+    /** serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    /** status. */
     private final int status;
+    /** code. */
     private final String code;
+    /** errorEnum. */
     private final EnumError errorEnum;
+    /** source. */
     private final String source;
 
-
+    /**
+     * Constructor.
+     *
+     * @param enumError {@link EnumError}
+     */
     public SimpleException(final EnumError enumError) {
-        this(enumError, (Throwable)null);
+        this(enumError, null);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param enumError {@link EnumError}
+     * @param cause {@link Throwable}
+     */
     public SimpleException(final EnumError enumError, final Throwable cause) {
-        this((EnumError)enumError, 500, cause);
+        this(enumError, 500, cause);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param enumError {@link EnumError}
+     * @param httpStatus {@link Integer}
+     */
     public SimpleException(final EnumError enumError, final int httpStatus) {
-        this((EnumError)enumError, httpStatus, (Throwable)null);
+        this(enumError, httpStatus, null);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param enumError {@link EnumError}
+     * @param httpStatus {@link Integer}
+     * @param cause {@link Throwable}
+     */
     public SimpleException(final EnumError enumError, final int httpStatus, final Throwable cause) {
         super(enumError.getMessage(), cause);
         this.source = SimpleException.class.getName();
@@ -53,28 +84,19 @@ public class SimpleException extends RuntimeException {
         this.code = enumError.getCode();
     }
 
+    /**
+     * Constructor.
+     *
+     * @param m {@link Map}
+     * @param httpStatus {@link Integer}
+     * @param cause {@link Throwable}
+     */
     private SimpleException(final Map<String, String> m, final int httpStatus, final Throwable cause) {
-        super((String)m.get("message"), cause);
+        super(m.get("message"), cause);
         this.source = SimpleException.class.getName();
         this.errorEnum = DriverAcademyError.DEFAULT;
-        this.code = (String)m.get("code");
+        this.code = m.get("code");
         this.status = httpStatus;
-    }
-
-    public int getStatus() {
-        return this.status;
-    }
-
-    public String getCode() {
-        return this.code;
-    }
-
-    public EnumError getErrorEnum() {
-        return this.errorEnum;
-    }
-
-    public String getSource() {
-        return this.source;
     }
 
 }

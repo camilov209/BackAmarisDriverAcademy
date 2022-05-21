@@ -15,10 +15,12 @@ package com.amaris.driveracademy.services.impl;
 import com.amaris.driveracademy.dao.DaoInscriptionCourse;
 import com.amaris.driveracademy.dtos.request.InscriptionCourseRequestDTO;
 import com.amaris.driveracademy.entities.InscriptionCourses;
+import com.amaris.driveracademy.entities.Modules;
 import com.amaris.driveracademy.services.InscriptionCourseService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class InscriptionCourseServiceImpl implements InscriptionCourseService {
 
+    /** modelMapper. */
+    private final ModelMapper modelMapper;
     /** daoInscriptionCourse. */
     private final DaoInscriptionCourse daoInscriptionCourse;
 
@@ -40,15 +44,15 @@ public class InscriptionCourseServiceImpl implements InscriptionCourseService {
      * {@inheritDoc}
      */
     @Override
-    public ResponseEntity<Void> insertInscriptionCourse(final List<InscriptionCourseRequestDTO> inscriptionCourses) {
+    public ResponseEntity<Void> insertInscriptionCourse(final InscriptionCourseRequestDTO inscriptionCourses) {
         final var inscriptionCourseMapperList = new ArrayList<InscriptionCourses>();
-        final var inscriptionCourseMapper = new InscriptionCourses();
-        inscriptionCourses.forEach(inscription -> inscription.getModules().getCourses().forEach(course -> {
-            inscriptionCourseMapper.setCourses(course);
-            inscriptionCourseMapper.setModules(inscription.getModules());
-            inscriptionCourseMapper.setStudents(inscription.getStudents());
+        inscriptionCourses.getModules().forEach(inscription -> {
+            final var inscriptionCourseMapper = new InscriptionCourses();
+            inscriptionCourseMapper.setStudents(inscriptionCourses.getStudents());
+            inscriptionCourseMapper.setModules(this.modelMapper.map(inscription, Modules.class));
+            inscriptionCourseMapper.setCourses(inscription.getCourses());
             inscriptionCourseMapperList.add(inscriptionCourseMapper);
-        }));
+        });
         this.daoInscriptionCourse.insertInscriptionCourse(inscriptionCourseMapperList);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -47,7 +47,7 @@ public class InscriptionCourseController {
      * @return {@link LicensesResponseDTO}
      */
     @PostMapping
-    public ResponseEntity<Void> insertInscriptionCourse(@RequestBody final List<InscriptionCourseRequestDTO> inscription) {
+    public ResponseEntity<Void> insertInscriptionCourse(@RequestBody final InscriptionCourseRequestDTO inscription) {
         return this.inscriptionCourseService.insertInscriptionCourse(inscription);
     }
 }

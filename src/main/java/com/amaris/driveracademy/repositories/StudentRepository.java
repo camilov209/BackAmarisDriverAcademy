@@ -33,8 +33,8 @@ public interface StudentRepository extends JpaRepository<Students, Long> {
      * @return {@link InformationStudentProjection}
      */
     @Query("SELECT s.studentId as studentId, s.studentName as studentName, s.studentAge as studentAge, " +
-        "s.studentIdentification as studentIdentification, " +
-        "m.moduleName as moduleName, c.courseName as courseName " +
+        "s.studentIdentification as studentIdentification, l.licenseId as licenseId, l.licenseName as licenseName, " +
+        "m.moduleId as moduleId, m.moduleName as moduleName, c.courseId as courseId, c.courseName as courseName " +
         "FROM Students s " +
         "LEFT JOIN InscriptionCourses ic " +
         "ON s.studentId = ic.students.studentId " +
@@ -42,6 +42,8 @@ public interface StudentRepository extends JpaRepository<Students, Long> {
         "ON m.moduleId = ic.modules.moduleId " +
         "LEFT JOIN Courses c " +
         "ON c.courseId = ic.courses.courseId " +
+        "LEFT JOIN Licenses l " +
+        "ON s.license.licenseId = l.licenseId " +
         "WHERE s.studentId = :pStudentId")
     List<InformationStudentProjection> findDetailStudent(long pStudentId);
 

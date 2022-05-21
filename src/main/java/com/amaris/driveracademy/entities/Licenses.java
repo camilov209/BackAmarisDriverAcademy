@@ -48,8 +48,4 @@ public class Licenses {
     /** License Name. */
     @Column(name = "LICENSES_NAME")
     private String licenseName;
-    /** students. */
-    @JsonBackReference
-    @ManyToMany(mappedBy = "licenses")
-    public List<Students> students;
 }

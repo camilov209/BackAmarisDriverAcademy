@@ -12,8 +12,10 @@
  */
 package com.amaris.driveracademy.dtos.request;
 
+import com.amaris.driveracademy.dtos.response.ModulesDetailResponseDTO;
 import com.amaris.driveracademy.entities.Modules;
 import com.amaris.driveracademy.entities.Students;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,5 +33,5 @@ public class InscriptionCourseRequestDTO {
     /** students. */
     private Students students;
     /** modules. */
-    private Modules modules;
+    private List<ModulesDetailResponseDTO> modules;
 }

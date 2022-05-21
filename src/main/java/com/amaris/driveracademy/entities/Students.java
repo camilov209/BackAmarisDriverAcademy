@@ -56,11 +56,9 @@ public class Students {
     /** Student Identification. */
     @Column(name = "STUDENT_IDENTIFICATION")
     private String studentIdentification;
-    /** licenses. */
-    @ManyToMany(cascade = { CascadeType.MERGE})
-    @JoinTable(name = "LICENSES_REGISTRATION",
-        joinColumns = @JoinColumn(name = "ID_STUDENT", referencedColumnName = "STUDENT_ID"),
-        inverseJoinColumns = @JoinColumn(name = "ID_LICENSE", referencedColumnName = "LICENSE_ID"))
-    private List<Licenses> licenses;
+    /** license. */
+    @ManyToOne
+    @JoinColumn(name = "ID_LICENSE")
+    private Licenses license;
 
 }

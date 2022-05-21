@@ -44,7 +44,8 @@ public interface StudentService {
     /**
      * Obtiene el detalle del estudiante.
      *
-     * @return {@link StudentsResponseDTO}
+     * @param id {@link Long}
+     * @return {@link StudentDetailResponseDTO}
      */
     StudentDetailResponseDTO getDetailStudent(long id);
 }

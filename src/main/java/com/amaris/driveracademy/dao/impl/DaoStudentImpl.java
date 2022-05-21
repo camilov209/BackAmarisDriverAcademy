@@ -70,7 +70,11 @@ public class DaoStudentImpl implements DaoStudent {
     @Override
     public List<InformationStudentProjection> getDetailStudent(long id) {
         try {
-            return this.studentRepository.findDetailStudent(id);
+            final var studentDetail = this.studentRepository.findDetailStudent(id);
+            if(studentDetail.isEmpty()) {
+                throw new SimpleException(DriverAcademyError.ERROR_EMPTY_STUDENTS, HttpStatus.NO_CONTENT.value());
+            }
+            return studentDetail;
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }

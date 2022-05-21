@@ -13,8 +13,6 @@
 package com.amaris.driveracademy.services;
 
 import com.amaris.driveracademy.dtos.request.InscriptionCourseRequestDTO;
-import com.amaris.driveracademy.entities.InscriptionCourses;
-import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -28,8 +26,8 @@ public interface InscriptionCourseService {
     /**
      * Inscripción a modulos y cursos.
      *
-     * @param {@{@link InscriptionCourses}
+     * @param inscriptionCourses {@link InscriptionCourseRequestDTO}
      * @return {@link Void}
      */
-    ResponseEntity<Void> insertInscriptionCourse(List<InscriptionCourseRequestDTO> inscriptionCourses);
+    ResponseEntity<Void> insertInscriptionCourse(InscriptionCourseRequestDTO inscriptionCourses);
 }

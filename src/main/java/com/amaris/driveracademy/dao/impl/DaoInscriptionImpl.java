@@ -42,7 +42,7 @@ public class DaoInscriptionImpl implements DaoInscriptionCourse {
     @Override
     public List<InscriptionCourses> insertInscriptionCourse(final List<InscriptionCourses> inscriptionCourses) {
         try {
-            return this.inscriptionCourseRepository.saveAll(inscriptionCourses);
+            return this.inscriptionCourseRepository.saveAllAndFlush(inscriptionCourses);
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }

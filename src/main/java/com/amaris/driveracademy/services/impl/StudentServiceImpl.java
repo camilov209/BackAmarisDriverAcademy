@@ -14,9 +14,11 @@ package com.amaris.driveracademy.services.impl;
 
 import com.amaris.driveracademy.dao.DaoStudent;
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
+import com.amaris.driveracademy.dtos.response.ModulesDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
 import com.amaris.driveracademy.entities.Courses;
+import com.amaris.driveracademy.entities.Licenses;
 import com.amaris.driveracademy.entities.Modules;
 import com.amaris.driveracademy.entities.Students;
 import com.amaris.driveracademy.enums.DriverAcademyError;
@@ -24,6 +26,7 @@ import com.amaris.driveracademy.exceptions.SimpleException;
 import com.amaris.driveracademy.services.StudentService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -75,15 +78,26 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDetailResponseDTO getDetailStudent(long id) {
         final var studentMapper = new StudentDetailResponseDTO();
-        final var modulesMapper = new ArrayList<Modules>();
-        final var module = new Modules();
+        final var modulesMapper = new ArrayList<ModulesDetailResponseDTO>();
+        final var license = new Licenses();
         final var studentDetail = this.daoStudent.getDetailStudent(id);
         studentMapper.setStudentName(studentDetail.get(0).getStudentName());
         studentMapper.setStudentAge(studentDetail.get(0).getStudentAge());
         studentMapper.setStudentIdentification(studentDetail.get(0).getStudentIdentification());
+        license.setLicenseId(studentDetail.get(0).getLicenseId());
+        license.setLicenseName(studentDetail.get(0).getLicenseName());
+        studentMapper.setLicenses(license);
         studentDetail.forEach(detail -> {
-            module.setModuleName(detail.getModuleName());
-            modulesMapper.add(module);
+            final var module = new ModulesDetailResponseDTO();
+            final var course = new Courses();
+            if(!Objects.isNull(detail.getModuleId())) {
+                module.setModuleId(detail.getModuleId());
+                module.setModuleName(detail.getModuleName());
+                course.setCourseId(detail.getCourseId());
+                course.setCourseName(detail.getCourseName());
+                module.setCourses(course);
+                modulesMapper.add(module);
+            }
         });
         studentMapper.setModule(modulesMapper);
         return studentMapper;

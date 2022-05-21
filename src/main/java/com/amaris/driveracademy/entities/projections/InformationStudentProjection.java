@@ -22,9 +22,25 @@ import java.util.List;
  * @version 1.0.0, 20-05-2022
  */
 public interface InformationStudentProjection {
+
+    /** studentId. */
     Long getStudentId();
+    /** studentName. */
     String getStudentName();
+    /** studentAge. */
     String getStudentAge();
+    /** studentIdentification. */
     String getStudentIdentification();
+    /** moduleId. */
+    Long getModuleId();
+    /** moduleName. */
     String getModuleName();
+    /** courseId. */
+    Long getCourseId();
+    /** courseName. */
+    String getCourseName();
+    /** licenseId. */
+    Long getLicenseId();
+    /** licenseName. */
+    String getLicenseName();
 }
