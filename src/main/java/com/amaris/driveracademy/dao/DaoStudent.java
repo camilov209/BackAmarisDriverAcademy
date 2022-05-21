@@ -13,6 +13,7 @@
 package com.amaris.driveracademy.dao;
 
 import com.amaris.driveracademy.entities.Students;
+import com.amaris.driveracademy.entities.projections.InformationStudentProjection;
 import java.util.List;
 
 /**
@@ -43,5 +44,5 @@ public interface DaoStudent {
      *
      * @return {@link Students}
      */
-    Students getDetailStudent(long id);
+    List<InformationStudentProjection> getDetailStudent(long id);
 }

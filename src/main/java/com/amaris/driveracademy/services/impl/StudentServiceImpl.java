@@ -16,6 +16,8 @@ import com.amaris.driveracademy.dao.DaoStudent;
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
 import com.amaris.driveracademy.dtos.response.StudentDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
+import com.amaris.driveracademy.entities.Courses;
+import com.amaris.driveracademy.entities.Modules;
 import com.amaris.driveracademy.entities.Students;
 import com.amaris.driveracademy.enums.DriverAcademyError;
 import com.amaris.driveracademy.exceptions.SimpleException;
@@ -72,9 +74,19 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public StudentDetailResponseDTO getDetailStudent(long id) {
+        final var studentMapper = new StudentDetailResponseDTO();
+        final var modulesMapper = new ArrayList<Modules>();
+        final var module = new Modules();
         final var studentDetail = this.daoStudent.getDetailStudent(id);
-        return this.modelMapper.map(studentDetail,
-            StudentDetailResponseDTO.class);
+        studentMapper.setStudentName(studentDetail.get(0).getStudentName());
+        studentMapper.setStudentAge(studentDetail.get(0).getStudentAge());
+        studentMapper.setStudentIdentification(studentDetail.get(0).getStudentIdentification());
+        studentDetail.forEach(detail -> {
+            module.setModuleName(detail.getModuleName());
+            modulesMapper.add(module);
+        });
+        studentMapper.setModule(modulesMapper);
+        return studentMapper;
     }
 
 }

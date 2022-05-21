@@ -14,6 +14,7 @@ package com.amaris.driveracademy.dao.impl;
 
 import com.amaris.driveracademy.dao.DaoStudent;
 import com.amaris.driveracademy.entities.Students;
+import com.amaris.driveracademy.entities.projections.InformationStudentProjection;
 import com.amaris.driveracademy.enums.CommonError;
 import com.amaris.driveracademy.enums.DriverAcademyError;
 import com.amaris.driveracademy.exceptions.SimpleException;
@@ -67,10 +68,9 @@ public class DaoStudentImpl implements DaoStudent {
      * {@inheritDoc}
      */
     @Override
-    public Students getDetailStudent(long id) {
+    public List<InformationStudentProjection> getDetailStudent(long id) {
         try {
-            return this.studentRepository.findById(id).orElseThrow(() ->
-                new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.NO_CONTENT.value()));
+            return this.studentRepository.findDetailStudent(id);
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }
