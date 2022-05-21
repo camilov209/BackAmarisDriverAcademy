@@ -1,5 +1,5 @@
 /*
- * @(#)Modules.java
+ * @(#)InscriptionCourses.java
  *
  * Copyright (c) BANCO DE CHILE (Chile). All rights reserved.
  *
@@ -12,10 +12,10 @@
  */
 package com.amaris.driveracademy.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,34 +23,39 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Modules.
+ * InscriptionCourses.
  *
  * @author Camilo Valderrama.
- * @version 1.0.0, 19-05-2022
+ * @version 1.0.0, 20-05-2022
  */
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "MODULES")
-public class Modules {
+@Table(name = "INSCRIPTION_COURSES")
+public class InscriptionCourses {
     /** Id. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long moduleId;
-    /** Module Name. */
-    @Column(name = "NAME")
-    private String moduleName;
-    /** Courses. */
-    @OneToMany(mappedBy = "modules")
-    private List<Courses> courses;
+    private long inscriptionId;
+    /** students. */
+    @ManyToOne
+    @JoinColumn(name = "ID_STUDENT")
+    private Students students;
+    /** students. */
+    @ManyToOne
+    @JoinColumn(name = "ID_MODULE")
+    private Modules modules;
+    /** students. */
+    @ManyToOne
+    @JoinColumn(name = "ID_COURSE")
+    private Courses courses;
 }

@@ -1,5 +1,5 @@
 /*
- * @(#)StudentRequestDTO.java
+ * @(#)RegistrationModuleRequestDTO.java
  *
  * Copyright (c) BANCO DE CHILE (Chile). All rights reserved.
  *
@@ -12,31 +12,24 @@
  */
 package com.amaris.driveracademy.dtos.request;
 
-import com.amaris.driveracademy.entities.Licenses;
 import com.amaris.driveracademy.entities.Modules;
-import java.util.List;
+import com.amaris.driveracademy.entities.Students;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * StudentRequestDTO.
+ * RegistrationModuleRequestDTO.
  *
  * @author Camilo Valderrama.
- * @version 1.0.0, 19-05-2022
+ * @version 1.0.0, 20-05-2022
  */
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudentRequestDTO {
-    /** name. */
-    private String studentName;
-    /** age. */
-    private String studentAge;
-    /** identification. */
-    private String studentIdentification;
-    /** licenses. */
-    private List<Licenses> licenses;
+public class InscriptionCourseRequestDTO {
+    /** students. */
+    private Students students;
     /** modules. */
-    private List<Modules> modules;
+    private Modules modules;
 }

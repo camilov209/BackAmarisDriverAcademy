@@ -17,6 +17,7 @@ import com.amaris.driveracademy.entities.Students;
 import com.amaris.driveracademy.enums.CommonError;
 import com.amaris.driveracademy.enums.DriverAcademyError;
 import com.amaris.driveracademy.exceptions.SimpleException;
+import com.amaris.driveracademy.repositories.ModuleRepository;
 import com.amaris.driveracademy.repositories.StudentRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,8 @@ public class DaoStudentImpl implements DaoStudent {
 
     /** studentRepository. */
     private final StudentRepository studentRepository;
+    /** moduleRepository. */
+    private final ModuleRepository moduleRepository;
 
     /**
      * {@inheritDoc}

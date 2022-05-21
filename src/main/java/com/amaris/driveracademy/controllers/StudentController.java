@@ -13,6 +13,7 @@
 package com.amaris.driveracademy.controllers;
 
 import com.amaris.driveracademy.dtos.request.StudentRequestDTO;
+import com.amaris.driveracademy.dtos.response.StudentDetailResponseDTO;
 import com.amaris.driveracademy.dtos.response.StudentsResponseDTO;
 import com.amaris.driveracademy.services.StudentService;
 import java.util.List;
@@ -68,7 +69,7 @@ public class StudentController {
      * @return {@link StudentsResponseDTO}
      */
     @GetMapping("/{id}")
-    public StudentsResponseDTO getAllStudents(@PathVariable final long id) {
+    public StudentDetailResponseDTO getAllStudents(@PathVariable final long id) {
         return this.studentService.getDetailStudent(id);
     }
 }
