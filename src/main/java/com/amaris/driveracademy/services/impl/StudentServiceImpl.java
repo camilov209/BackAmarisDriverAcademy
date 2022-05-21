@@ -24,6 +24,7 @@ import com.amaris.driveracademy.entities.Students;
 import com.amaris.driveracademy.enums.DriverAcademyError;
 import com.amaris.driveracademy.exceptions.SimpleException;
 import com.amaris.driveracademy.services.StudentService;
+import com.amaris.driveracademy.validations.StudentValidation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -47,12 +48,17 @@ public class StudentServiceImpl implements StudentService {
     private final ModelMapper modelMapper;
     /** daoStudent. */
     private final DaoStudent daoStudent;
+    /** studentValidation. */
+    private final StudentValidation studentValidation;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> insertStudent(final StudentRequestDTO studentRequest) {
+        if(studentValidation.validateRequiredFieldsStudent(studentRequest)) {
+            throw new SimpleException(DriverAcademyError.ERROR_REQUIRED_FIELDS, HttpStatus.BAD_REQUEST.value());
+        }
         final var student = this.modelMapper.map(studentRequest, Students.class);
         this.daoStudent.insertStudent(student);
         return new ResponseEntity<>(HttpStatus.CREATED);

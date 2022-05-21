@@ -37,7 +37,9 @@ public enum DriverAcademyError implements EnumError {
     /** ERROR_NOT_EXITS_MODULE_COURSE. */
     ERROR_NOT_EXITS_MODULE_COURSE("06", "El estudiante, módulo o curso no existe."),
     /** ERROR_NOT_COINCIDE_COURSE_MODULE. */
-    ERROR_NOT_COINCIDE_COURSE_MODULE("07", "El curso no pertenece a un módulo.");
+    ERROR_NOT_COINCIDE_COURSE_MODULE("07", "El curso no pertenece a un módulo."),
+    /** ERROR_REQUIRED_FIELDS. */
+    ERROR_REQUIRED_FIELDS("08", "Hay parámetros requeridos sin diligenciar.");
 
     /** code. */
     private final String code;

@@ -16,7 +16,10 @@ import com.amaris.driveracademy.dao.DaoInscriptionCourse;
 import com.amaris.driveracademy.dtos.request.InscriptionCourseRequestDTO;
 import com.amaris.driveracademy.entities.InscriptionCourses;
 import com.amaris.driveracademy.entities.Modules;
+import com.amaris.driveracademy.enums.DriverAcademyError;
+import com.amaris.driveracademy.exceptions.SimpleException;
 import com.amaris.driveracademy.services.InscriptionCourseService;
+import com.amaris.driveracademy.validations.InscriptionCourseValidation;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -39,12 +42,16 @@ public class InscriptionCourseServiceImpl implements InscriptionCourseService {
     private final ModelMapper modelMapper;
     /** daoInscriptionCourse. */
     private final DaoInscriptionCourse daoInscriptionCourse;
+    private final InscriptionCourseValidation inscriptionCourseValidation;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ResponseEntity<Void> insertInscriptionCourse(final InscriptionCourseRequestDTO inscriptionCourses) {
+        if(this.inscriptionCourseValidation.validateRequiredFieldsInscription(inscriptionCourses)) {
+            throw new SimpleException(DriverAcademyError.ERROR_REQUIRED_FIELDS, HttpStatus.BAD_REQUEST.value());
+        }
         final var inscriptionCourseMapperList = new ArrayList<InscriptionCourses>();
         inscriptionCourses.getModules().forEach(inscription -> {
             final var inscriptionCourseMapper = new InscriptionCourses();

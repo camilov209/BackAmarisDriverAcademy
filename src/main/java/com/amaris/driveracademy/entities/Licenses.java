@@ -44,7 +44,7 @@ public class Licenses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LICENSE_ID")
-    private long licenseId;
+    private Long licenseId;
     /** License Name. */
     @Column(name = "LICENSES_NAME")
     private String licenseName;

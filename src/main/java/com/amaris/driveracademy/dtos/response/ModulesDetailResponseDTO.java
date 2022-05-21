@@ -30,7 +30,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ModulesDetailResponseDTO {
     /** moduleId. */
-    private long moduleId;
+    private Long moduleId;
     /** moduleName. */
     private String moduleName;
     /** courses. */
