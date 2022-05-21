@@ -1,5 +1,5 @@
 /*
- * @(#)InscriptionCourseRepository.java
+ * @(#)CourseRepository.java
  *
  * Copyright (c) BANCO DE CHILE (Chile). All rights reserved.
  *
@@ -12,27 +12,27 @@
  */
 package com.amaris.driveracademy.repositories;
 
-import com.amaris.driveracademy.entities.InscriptionCourses;
-import com.amaris.driveracademy.entities.Students;
+import com.amaris.driveracademy.entities.Courses;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * InscriptionCourseRepository.
+ * CourseRepository.
  *
  * @author Camilo Valderrama.
- * @version 1.0.0, 20-05-2022
+ * @version 1.0.0, 21-05-2022
  */
-public interface InscriptionCourseRepository extends JpaRepository<InscriptionCourses, Long> {
+public interface CourseRepository extends JpaRepository<Courses, Long> {
 
     /**
-     * Obtiene modulos registrados.
+     * Obtiene cursos relacionados con los módulos.
      *
+     * @param pCourseId {@link Long}
      * @param pModuleId {@link Long}
-     * @return {@link InscriptionCourses}
+     * @return {@link Courses}
      */
-    @Query("SELECT ic FROM InscriptionCourses ic " +
-        "WHERE ic.students.studentId IN :pStudentId AND ic.modules.moduleId IN :pModuleId")
-    List<InscriptionCourses> findByModuleIdAndStudentId(List<Long> pStudentId, List<Long> pModuleId);
+    @Query("SELECT c " +
+        "FROM Courses c WHERE c.courseId IN :pCourseId AND c.modules.moduleId IN :pModuleId")
+    List<Courses> getCoursesByIdAndModuleId(List<Long> pCourseId, List<Long> pModuleId);
 }

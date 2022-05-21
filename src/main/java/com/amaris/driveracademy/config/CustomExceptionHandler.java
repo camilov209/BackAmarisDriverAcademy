@@ -25,7 +25,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -121,7 +120,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
      */
     private ResponseEntity<Object> doHandleSimpleException(final SimpleException ex, final WebRequest webRequest) {
         if (ex.getCause() != null) {
-            if (CustomExceptionHandler.isCauseType(ex, SimpleException.class)) {
+            if(CustomExceptionHandler.isCauseType(ex, SimpleException.class)) {
                 return this.handleSimpleException((SimpleException) ex.getCause(), webRequest);
             }
         }

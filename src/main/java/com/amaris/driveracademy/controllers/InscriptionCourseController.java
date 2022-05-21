@@ -14,12 +14,8 @@ package com.amaris.driveracademy.controllers;
 
 import com.amaris.driveracademy.dtos.request.InscriptionCourseRequestDTO;
 import com.amaris.driveracademy.dtos.response.LicensesResponseDTO;
-import com.amaris.driveracademy.enums.CommonError;
-import com.amaris.driveracademy.exceptions.SimpleException;
 import com.amaris.driveracademy.services.InscriptionCourseService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -81,6 +81,7 @@ public class StudentServiceImpl implements StudentService {
         final var modulesMapper = new ArrayList<ModulesDetailResponseDTO>();
         final var license = new Licenses();
         final var studentDetail = this.daoStudent.getDetailStudent(id);
+        studentMapper.setStudentId(studentDetail.get(0).getStudentId());
         studentMapper.setStudentName(studentDetail.get(0).getStudentName());
         studentMapper.setStudentAge(studentDetail.get(0).getStudentAge());
         studentMapper.setStudentIdentification(studentDetail.get(0).getStudentIdentification());

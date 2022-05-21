@@ -22,6 +22,7 @@ import com.amaris.driveracademy.repositories.ModuleRepository;
 import com.amaris.driveracademy.repositories.StudentRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -75,6 +76,9 @@ public class DaoStudentImpl implements DaoStudent {
                 throw new SimpleException(DriverAcademyError.ERROR_EMPTY_STUDENTS, HttpStatus.NO_CONTENT.value());
             }
             return studentDetail;
+        }catch (final DataIntegrityViolationException integrityViolationException) {
+            throw new SimpleException(DriverAcademyError.ERROR_STUDENT_EXIST,
+                HttpStatus.BAD_REQUEST.value(), integrityViolationException);
         }catch (final Exception ex) {
             throw new SimpleException(CommonError.INTERMITTENT_SERVICE, HttpStatus.BAD_REQUEST.value(), ex);
         }

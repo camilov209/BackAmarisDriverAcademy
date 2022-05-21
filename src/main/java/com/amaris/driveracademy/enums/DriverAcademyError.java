@@ -31,8 +31,13 @@ public enum DriverAcademyError implements EnumError {
     /** ERROR_EMPTY_MODULE. */
     ERROR_EMPTY_MODULE("03", "No se encontraron modulos registrados"),
     /** ERROR_EMPTY_LICENSES. */
-    ERROR_EMPTY_LICENSES("04", "No se encontraron tipos de licencias registradas");
-
+    ERROR_EMPTY_LICENSES("04", "No se encontraron tipos de licencias registradas"),
+    /** ERROR_EXIST_INSCRIPTION. */
+    ERROR_EXIST_INSCRIPTION("05", "El estudiante ya tiene un curso registrado."),
+    /** ERROR_NOT_EXITS_MODULE_COURSE. */
+    ERROR_NOT_EXITS_MODULE_COURSE("06", "El estudiante, módulo o curso no existe."),
+    /** ERROR_NOT_COINCIDE_COURSE_MODULE. */
+    ERROR_NOT_COINCIDE_COURSE_MODULE("07", "El curso no pertenece a un módulo.");
 
     /** code. */
     private final String code;
