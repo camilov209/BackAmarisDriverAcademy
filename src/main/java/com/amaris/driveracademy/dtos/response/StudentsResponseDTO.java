@@ -33,6 +33,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentsResponseDTO {
+    /** studentId. */
+    private Long studentId;
     /** name. */
     private String studentName;
     /** age. */
