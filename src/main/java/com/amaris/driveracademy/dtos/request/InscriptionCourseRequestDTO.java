@@ -13,7 +13,6 @@
 package com.amaris.driveracademy.dtos.request;
 
 import com.amaris.driveracademy.dtos.response.ModulesDetailResponseDTO;
-import com.amaris.driveracademy.entities.Modules;
 import com.amaris.driveracademy.entities.Students;
 import java.util.List;
 import lombok.Getter;

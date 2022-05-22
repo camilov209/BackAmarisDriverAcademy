@@ -32,8 +32,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudentDetailResponseDTO extends StudentsResponseDTO {
-    /** license. */
-    private Licenses licenses;
     /** module. */
     private List<ModulesDetailResponseDTO> module;
 }

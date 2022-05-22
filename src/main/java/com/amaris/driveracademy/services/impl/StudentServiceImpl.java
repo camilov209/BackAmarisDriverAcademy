@@ -93,7 +93,7 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.setStudentIdentification(studentDetail.get(0).getStudentIdentification());
         license.setLicenseId(studentDetail.get(0).getLicenseId());
         license.setLicenseName(studentDetail.get(0).getLicenseName());
-        studentMapper.setLicenses(license);
+        studentMapper.setLicense(license);
         studentDetail.forEach(detail -> {
             final var module = new ModulesDetailResponseDTO();
             final var course = new Courses();
