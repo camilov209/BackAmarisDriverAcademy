@@ -41,4 +41,6 @@ public class StudentsResponseDTO {
     private String studentAge;
     /** identification. */
     private String studentIdentification;
+    /** license. */
+    private Licenses license;
 }
